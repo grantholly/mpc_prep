@@ -12,7 +12,11 @@ def get_sample_rate(f):
 
 # check that we don't overwrite anything accidentally
 FN = sys.argv[1]
-print(os.path.isfile(FN))
+
+if not os.path.isfile(FN):
+    print(f"{FN} is not a file.  Exiting")
+    exit(42)
+
 print(f"preparing {FN}")
 name, ext = os.path.splitext(FN)
 name = re.sub(r"[^\w\s]", "", name)
